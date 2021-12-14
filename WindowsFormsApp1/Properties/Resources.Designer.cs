@@ -61,6 +61,26 @@ namespace WindowsFormsApp1.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] ChinaBoundary {
+            get {
+                object obj = ResourceManager.GetObject("ChinaBoundary", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] ChinaBoundary_Province_City {
+            get {
+                object obj = ResourceManager.GetObject("ChinaBoundary_Province_City", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap 放大 {
