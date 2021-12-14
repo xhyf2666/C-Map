@@ -353,6 +353,7 @@ namespace WindowsFormsApp1
             this.toolStripStatusPOIDownload.Size = new System.Drawing.Size(67, 15);
             this.toolStripStatusPOIDownload.TabIndex = 19;
             this.toolStripStatusPOIDownload.Text = "搜索结果";
+            //取消检查非法线程访问
             System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
             // 
             // statusStrip1
