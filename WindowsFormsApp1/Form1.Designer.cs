@@ -56,12 +56,14 @@ namespace WindowsFormsApp1
             this.lngDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStripStatusPOIDownload = new System.Windows.Forms.Label();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.buttonPoiSave = new System.Windows.Forms.Button();
+            this.poiDataBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZoomOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZoomIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOI)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // map
@@ -324,8 +326,8 @@ namespace WindowsFormsApp1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.buttonPoiSave);
             this.panel1.Controls.Add(this.toolStripStatusPOIDownload);
-            this.panel1.Controls.Add(this.statusStrip1);
             this.panel1.Controls.Add(this.dataGridViewPOI);
             this.panel1.Controls.Add(this.comboBoxCity);
             this.panel1.Controls.Add(this.label4);
@@ -348,23 +350,25 @@ namespace WindowsFormsApp1
             // toolStripStatusPOIDownload
             // 
             this.toolStripStatusPOIDownload.AutoSize = true;
-            this.toolStripStatusPOIDownload.Location = new System.Drawing.Point(5, 619);
+            this.toolStripStatusPOIDownload.Location = new System.Drawing.Point(19, 621);
             this.toolStripStatusPOIDownload.Name = "toolStripStatusPOIDownload";
             this.toolStripStatusPOIDownload.Size = new System.Drawing.Size(67, 15);
             this.toolStripStatusPOIDownload.TabIndex = 19;
             this.toolStripStatusPOIDownload.Text = "搜索结果";
-            //取消检查非法线程访问
-            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
             // 
-            // statusStrip1
+            // buttonPoiSave
             // 
-            this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(7, 612);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(202, 22);
-            this.statusStrip1.TabIndex = 18;
-            this.statusStrip1.Text = "statusStrip1";
+            this.buttonPoiSave.Location = new System.Drawing.Point(287, 244);
+            this.buttonPoiSave.Name = "buttonPoiSave";
+            this.buttonPoiSave.Size = new System.Drawing.Size(75, 26);
+            this.buttonPoiSave.TabIndex = 20;
+            this.buttonPoiSave.Text = "保存";
+            this.buttonPoiSave.UseVisualStyleBackColor = true;
+            this.buttonPoiSave.Click += new System.EventHandler(this.buttonPoiSave_Click);
+            // 
+            // poiDataBindingSource1
+            // 
+            this.poiDataBindingSource1.DataSource = typeof(GMapPOI.PoiData);
             // 
             // Form1
             // 
@@ -383,6 +387,7 @@ namespace WindowsFormsApp1
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOI)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,8 +420,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.DataGridViewTextBoxColumn latDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lngDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Label toolStripStatusPOIDownload;
+        private System.Windows.Forms.Button buttonPoiSave;
+        private System.Windows.Forms.BindingSource poiDataBindingSource1;
     }
 }
 

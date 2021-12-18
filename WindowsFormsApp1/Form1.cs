@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NetUtil;
 
 namespace WindowsFormsApp1
 {
@@ -278,9 +279,18 @@ namespace WindowsFormsApp1
             this.toolStripStatusPOIDownload.Text = string.Format("共找到：{0}条POI数据", poisQueryResult.Count);
         }
 
+        delegate void changeToolStripStatusPOIDownloadTextCallBack(string text);
+        private void setToolStripStatusPOIDownloadText(string text) {
+            if (this.toolStripStatusPOIDownload.InvokeRequired) {
+                changeToolStripStatusPOIDownloadTextCallBack stcb = new changeToolStripStatusPOIDownloadTextCallBack(setToolStripStatusPOIDownloadText);
+                this.Invoke(stcb, new object[] { text }); } 
+            else { 
+                this.toolStripStatusPOIDownload.Text = text; } 
+        }
         private void queryProgressEvent(long completedCount, long total)
         {
-            this.toolStripStatusPOIDownload.Text = string.Format("已找到{0}条POI，还在查询中...", completedCount);
+            setToolStripStatusPOIDownloadText(string.Format("已找到{0}条POI，还在查询中...", completedCount));
+            //this.toolStripStatusPOIDownload.Text = string.Format("已找到{0}条POI，还在查询中...", completedCount);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -303,6 +313,80 @@ namespace WindowsFormsApp1
             longtitude.Text = p.Lng.ToString();
         }
 
+        private void buttonPoiSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (poiDataList.Count <= 0)
+                {
+                    MessageBox.Show("POI数据为空，无法保存！");
+                    return;
+                }
+                BackgroundWorker poiExportWorker = new BackgroundWorker();
+                poiExportWorker.DoWork += new DoWorkEventHandler(poiExportWorker_DoWork);
+                poiExportWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(poiExportWorker_RunWorkerCompleted);
 
+                int selectIndex = 0;
+                if (selectIndex == 0)
+                {
+                    SaveFileDialog saveDlg = new SaveFileDialog();
+                    saveDlg.Filter = "Excel File (*.xls)|*.xls|(*.xlsx)|*.xlsx";
+                    saveDlg.FilterIndex = 1;
+                    saveDlg.RestoreDirectory = true;
+                    if (saveDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        string file = saveDlg.FileName;
+
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("名称", typeof(string));
+                        dt.Columns.Add("地址", typeof(string));
+                        dt.Columns.Add("省份", typeof(string));
+                        dt.Columns.Add("城市", typeof(string));
+                        dt.Columns.Add("经度", typeof(double));
+                        dt.Columns.Add("纬度", typeof(double));
+
+                        foreach (PoiData data in poiDataList)
+                        {
+                            DataRow dr = dt.NewRow();
+                            dr["名称"] = data.Name;
+                            dr["地址"] = data.Address;
+                            dr["省份"] = data.Province;
+                            dr["城市"] = data.City;
+                            dr["经度"] = data.Lng;
+                            dr["纬度"] = data.Lat;
+                            dt.Rows.Add(dr);
+                        }
+                        PoiExportParameter para = new PoiExportParameter();
+                        para.Path = file;
+                        para.Data = dt;
+                        para.ExportType = selectIndex;
+                        poiExportWorker.RunWorkerAsync(para);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("POI保存失败！");
+            }
+        }
+
+        void poiExportWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("POI保存完成！");
+        }
+
+        void poiExportWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if (e != null)
+            {
+                PoiExportParameter para = e.Argument as PoiExportParameter;
+                if (para.ExportType == 0)
+                {
+                    DataTable dt = para.Data;
+                    string file = para.Path;
+                    ExcelHelper.DataTableToExcel(dt, file, null, true);
+                }
+            }
+        }
     }
 }
