@@ -32,7 +32,6 @@ namespace WindowsFormsApp1
             this.components = new System.ComponentModel.Container();
             this.map = new GMap.NET.WindowsForms.GMapControl();
             this.poiDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.label2 = new System.Windows.Forms.Label();
             this.latitude = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,15 +54,35 @@ namespace WindowsFormsApp1
             this.latDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lngDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripStatusPOIDownload = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.toolStripProgressBarDownload = new System.Windows.Forms.ProgressBar();
+            this.toolStripStatusDownload = new System.Windows.Forms.Label();
+            this.buttonDrawDistance = new System.Windows.Forms.Button();
             this.buttonPoiSave = new System.Windows.Forms.Button();
+            this.toolStripStatusPOIDownload = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.poiDataBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.矩形ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.圆形ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.多边形ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.图层清理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清理画图ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.清理测距ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.清理标记ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.清理缓存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除下载文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.advTreeChina = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZoomOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZoomIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPOI)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // map
@@ -99,21 +118,12 @@ namespace WindowsFormsApp1
             // 
             this.poiDataBindingSource.DataSource = typeof(GMapPOI.PoiData);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1246, 25);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 72);
+            this.label2.Location = new System.Drawing.Point(26, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 15);
             this.label2.TabIndex = 2;
@@ -122,7 +132,7 @@ namespace WindowsFormsApp1
             // 
             // latitude
             // 
-            this.latitude.Location = new System.Drawing.Point(88, 69);
+            this.latitude.Location = new System.Drawing.Point(88, 116);
             this.latitude.Name = "latitude";
             this.latitude.Size = new System.Drawing.Size(100, 25);
             this.latitude.TabIndex = 4;
@@ -133,7 +143,7 @@ namespace WindowsFormsApp1
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 30);
+            this.label1.Location = new System.Drawing.Point(26, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 1;
@@ -142,7 +152,7 @@ namespace WindowsFormsApp1
             // 
             // longtitude
             // 
-            this.longtitude.Location = new System.Drawing.Point(88, 27);
+            this.longtitude.Location = new System.Drawing.Point(88, 74);
             this.longtitude.Name = "longtitude";
             this.longtitude.Size = new System.Drawing.Size(100, 25);
             this.longtitude.TabIndex = 3;
@@ -150,7 +160,7 @@ namespace WindowsFormsApp1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(244, 27);
+            this.button1.Location = new System.Drawing.Point(244, 74);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 34);
             this.button1.TabIndex = 5;
@@ -162,7 +172,7 @@ namespace WindowsFormsApp1
             // 
             this.pictureZoomOut.Image = global::WindowsFormsApp1.Properties.Resources.缩小;
             this.pictureZoomOut.InitialImage = global::WindowsFormsApp1.Properties.Resources.缩小;
-            this.pictureZoomOut.Location = new System.Drawing.Point(143, 100);
+            this.pictureZoomOut.Location = new System.Drawing.Point(143, 147);
             this.pictureZoomOut.Name = "pictureZoomOut";
             this.pictureZoomOut.Size = new System.Drawing.Size(45, 42);
             this.pictureZoomOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -173,7 +183,7 @@ namespace WindowsFormsApp1
             // pictureZoomIn
             // 
             this.pictureZoomIn.Image = global::WindowsFormsApp1.Properties.Resources.放大;
-            this.pictureZoomIn.Location = new System.Drawing.Point(29, 100);
+            this.pictureZoomIn.Location = new System.Drawing.Point(29, 147);
             this.pictureZoomIn.Name = "pictureZoomIn";
             this.pictureZoomIn.Size = new System.Drawing.Size(43, 42);
             this.pictureZoomIn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -326,6 +336,10 @@ namespace WindowsFormsApp1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.toolStripProgressBarDownload);
+            this.panel1.Controls.Add(this.toolStripStatusDownload);
+            this.panel1.Controls.Add(this.buttonDrawDistance);
             this.panel1.Controls.Add(this.buttonPoiSave);
             this.panel1.Controls.Add(this.toolStripStatusPOIDownload);
             this.panel1.Controls.Add(this.dataGridViewPOI);
@@ -342,19 +356,49 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.latitude);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(854, 28);
+            this.panel1.Location = new System.Drawing.Point(854, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(380, 657);
             this.panel1.TabIndex = 7;
             // 
-            // toolStripStatusPOIDownload
+            // button2
             // 
-            this.toolStripStatusPOIDownload.AutoSize = true;
-            this.toolStripStatusPOIDownload.Location = new System.Drawing.Point(19, 621);
-            this.toolStripStatusPOIDownload.Name = "toolStripStatusPOIDownload";
-            this.toolStripStatusPOIDownload.Size = new System.Drawing.Size(67, 15);
-            this.toolStripStatusPOIDownload.TabIndex = 19;
-            this.toolStripStatusPOIDownload.Text = "搜索结果";
+            this.button2.Location = new System.Drawing.Point(29, 26);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 26);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "选择区域";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // toolStripProgressBarDownload
+            // 
+            this.toolStripProgressBarDownload.Location = new System.Drawing.Point(240, 631);
+            this.toolStripProgressBarDownload.Name = "toolStripProgressBarDownload";
+            this.toolStripProgressBarDownload.Size = new System.Drawing.Size(100, 23);
+            this.toolStripProgressBarDownload.TabIndex = 23;
+            this.toolStripProgressBarDownload.Visible = false;
+            // 
+            // toolStripStatusDownload
+            // 
+            this.toolStripStatusDownload.AutoSize = true;
+            this.toolStripStatusDownload.Location = new System.Drawing.Point(5, 633);
+            this.toolStripStatusDownload.Name = "toolStripStatusDownload";
+            this.toolStripStatusDownload.Size = new System.Drawing.Size(67, 15);
+            this.toolStripStatusDownload.TabIndex = 22;
+            this.toolStripStatusDownload.Text = "下载进度";
+            this.toolStripStatusDownload.Visible = false;
+            this.toolStripStatusDownload.Click += new System.EventHandler(this.toolStripStatusDownload_Click);
+            // 
+            // buttonDrawDistance
+            // 
+            this.buttonDrawDistance.Location = new System.Drawing.Point(197, 26);
+            this.buttonDrawDistance.Name = "buttonDrawDistance";
+            this.buttonDrawDistance.Size = new System.Drawing.Size(75, 26);
+            this.buttonDrawDistance.TabIndex = 21;
+            this.buttonDrawDistance.Text = "测距";
+            this.buttonDrawDistance.UseVisualStyleBackColor = true;
+            this.buttonDrawDistance.Click += new System.EventHandler(this.buttonDrawDistance_Click);
             // 
             // buttonPoiSave
             // 
@@ -366,20 +410,158 @@ namespace WindowsFormsApp1
             this.buttonPoiSave.UseVisualStyleBackColor = true;
             this.buttonPoiSave.Click += new System.EventHandler(this.buttonPoiSave_Click);
             // 
+            // toolStripStatusPOIDownload
+            // 
+            this.toolStripStatusPOIDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toolStripStatusPOIDownload.AutoSize = true;
+            this.toolStripStatusPOIDownload.Location = new System.Drawing.Point(5, 612);
+            this.toolStripStatusPOIDownload.Name = "toolStripStatusPOIDownload";
+            this.toolStripStatusPOIDownload.Size = new System.Drawing.Size(67, 15);
+            this.toolStripStatusPOIDownload.TabIndex = 19;
+            this.toolStripStatusPOIDownload.Text = "搜索结果";
+            this.toolStripStatusPOIDownload.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(27, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(89, 28);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "切换模式";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // poiDataBindingSource1
             // 
             this.poiDataBindingSource1.DataSource = typeof(GMapPOI.PoiData);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.图层清理ToolStripMenuItem,
+            this.清理缓存ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1246, 28);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.矩形ToolStripMenuItem1,
+            this.圆形ToolStripMenuItem1,
+            this.多边形ToolStripMenuItem1});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(83, 24);
+            this.toolStripMenuItem1.Text = "画图工具";
+            // 
+            // 矩形ToolStripMenuItem1
+            // 
+            this.矩形ToolStripMenuItem1.Name = "矩形ToolStripMenuItem1";
+            this.矩形ToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.矩形ToolStripMenuItem1.Text = "矩形";
+            this.矩形ToolStripMenuItem1.Click += new System.EventHandler(this.矩形ToolStripMenuItem1_Click_1);
+            // 
+            // 圆形ToolStripMenuItem1
+            // 
+            this.圆形ToolStripMenuItem1.Name = "圆形ToolStripMenuItem1";
+            this.圆形ToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.圆形ToolStripMenuItem1.Text = "圆形";
+            this.圆形ToolStripMenuItem1.Click += new System.EventHandler(this.圆形ToolStripMenuItem1_Click);
+            // 
+            // 多边形ToolStripMenuItem1
+            // 
+            this.多边形ToolStripMenuItem1.Name = "多边形ToolStripMenuItem1";
+            this.多边形ToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.多边形ToolStripMenuItem1.Text = "多边形";
+            this.多边形ToolStripMenuItem1.Click += new System.EventHandler(this.多边形ToolStripMenuItem1_Click);
+            // 
+            // 图层清理ToolStripMenuItem
+            // 
+            this.图层清理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.清理画图ToolStripMenuItem1,
+            this.清理测距ToolStripMenuItem1,
+            this.清理标记ToolStripMenuItem});
+            this.图层清理ToolStripMenuItem.Name = "图层清理ToolStripMenuItem";
+            this.图层清理ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.图层清理ToolStripMenuItem.Text = "图层清理";
+            // 
+            // 清理画图ToolStripMenuItem1
+            // 
+            this.清理画图ToolStripMenuItem1.Name = "清理画图ToolStripMenuItem1";
+            this.清理画图ToolStripMenuItem1.Size = new System.Drawing.Size(152, 26);
+            this.清理画图ToolStripMenuItem1.Text = "清理画图";
+            this.清理画图ToolStripMenuItem1.Click += new System.EventHandler(this.清理画图ToolStripMenuItem1_Click);
+            // 
+            // 清理测距ToolStripMenuItem1
+            // 
+            this.清理测距ToolStripMenuItem1.Name = "清理测距ToolStripMenuItem1";
+            this.清理测距ToolStripMenuItem1.Size = new System.Drawing.Size(152, 26);
+            this.清理测距ToolStripMenuItem1.Text = "清理测距";
+            // 
+            // 清理标记ToolStripMenuItem
+            // 
+            this.清理标记ToolStripMenuItem.Name = "清理标记ToolStripMenuItem";
+            this.清理标记ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.清理标记ToolStripMenuItem.Text = "清理标记";
+            this.清理标记ToolStripMenuItem.Click += new System.EventHandler(this.清理标记ToolStripMenuItem_Click);
+            // 
+            // 清理缓存ToolStripMenuItem
+            // 
+            this.清理缓存ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除下载文件ToolStripMenuItem});
+            this.清理缓存ToolStripMenuItem.Name = "清理缓存ToolStripMenuItem";
+            this.清理缓存ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.清理缓存ToolStripMenuItem.Text = "清理缓存";
+            this.清理缓存ToolStripMenuItem.Click += new System.EventHandler(this.清理缓存ToolStripMenuItem_Click);
+            // 
+            // 删除下载文件ToolStripMenuItem
+            // 
+            this.删除下载文件ToolStripMenuItem.Name = "删除下载文件ToolStripMenuItem";
+            this.删除下载文件ToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
+            this.删除下载文件ToolStripMenuItem.Text = "删除下载文件";
+            this.删除下载文件ToolStripMenuItem.Click += new System.EventHandler(this.删除下载文件ToolStripMenuItem_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.advTreeChina);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Enabled = false;
+            this.panel2.Location = new System.Drawing.Point(855, 29);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(380, 641);
+            this.panel2.TabIndex = 10;
+            this.panel2.Visible = false;
+            // 
+            // advTreeChina
+            // 
+            this.advTreeChina.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.advTreeChina.BackColor = System.Drawing.SystemColors.Control;
+            this.advTreeChina.Location = new System.Drawing.Point(-6, 57);
+            this.advTreeChina.Name = "advTreeChina";
+            this.advTreeChina.Size = new System.Drawing.Size(397, 591);
+            this.advTreeChina.TabIndex = 1;
+            this.advTreeChina.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.advTreeChina_NodeMouseClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1246, 673);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.map);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "寄Map";
+            this.Text = "GMap在线地图";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureZoomOut)).EndInit();
@@ -388,6 +570,9 @@ namespace WindowsFormsApp1
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poiDataBindingSource1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,7 +581,6 @@ namespace WindowsFormsApp1
         #endregion
 
         private GMap.NET.WindowsForms.GMapControl map;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.BindingSource poiDataBindingSource;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox latitude;
@@ -423,6 +607,24 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label toolStripStatusPOIDownload;
         private System.Windows.Forms.Button buttonPoiSave;
         private System.Windows.Forms.BindingSource poiDataBindingSource1;
+        private System.Windows.Forms.Button buttonDrawDistance;
+        private System.Windows.Forms.Label toolStripStatusDownload;
+        private System.Windows.Forms.ProgressBar toolStripProgressBarDownload;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 圆形ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 多边形ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 图层清理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 清理画图ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 清理测距ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 清理缓存ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除下载文件ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 矩形ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 清理标记ToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TreeView advTreeChina;
     }
 }
 
