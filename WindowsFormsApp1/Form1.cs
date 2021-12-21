@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             map.MapProvider = GMapProvidersExt.AMap.AMapProvider.Instance;
-            map.MinZoom = 1;      //最小比例
+            map.MinZoom = 2;      //最小比例
             map.MaxZoom = 18;     //最大比例
             map.Zoom = 8;        //当前比例
             this.map.DragButton = System.Windows.Forms.MouseButtons.Left;//左键拖拽地图
@@ -318,6 +318,7 @@ namespace WindowsFormsApp1
 
         private void map_MouseClick(object sender, MouseEventArgs e)
         {
+            return;
             if (mouseMove)
             {
                 PointLatLng p = map.FromLocalToLatLng(e.X, e.Y);
@@ -693,6 +694,7 @@ namespace WindowsFormsApp1
         private void 清理画图ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             regionOverlay.Clear();
+            polygonsOverlay.Clear();
             mouseMove = true;
         }
 
